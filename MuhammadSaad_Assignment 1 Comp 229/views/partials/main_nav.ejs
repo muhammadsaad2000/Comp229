@@ -1,0 +1,49 @@
+ <!--Main Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #00008B;">
+      <a class="navbar-brand" href="/"> <img src="/Assets/images/MuhammadLogo.png" width="200" height="50" class="d-inline-block align-top" alt=""></a>
+        <a class="navbar-brand">Muhammad Saad</a>
+        
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+        <% if (title=="Home") { %>
+            <a class="nav-link active" href="/"><i class="fas fa-home"></i> Home</a>
+            <%} else{%>
+            <a class="nav-link" href="/"><i class="fas fa-home"></i> Home</a>
+            <%}%>
+          </li>
+          <li class="nav-item">
+          <% if (title=="About Me") { %>
+            <a class="nav-link active" href="/aboutme"><i class="fas fa-user-shield"></i> About Me</a>
+            <%} else{%>
+            <a class="nav-link" href="/aboutme"><i class="fas fa-user-shield"></i> About Me</a>
+           <%}%>
+          </li>
+          <li class="nav-item">
+          <% if (title=="Projects") { %>
+            <a class="nav-link active" href="/projects"><i class="fas fa-laptop"></i> Projects</a>
+            <%} else{%>
+             <a class="nav-link" href="/projects"><i class="fas fa-laptop"></i> Projects</a>
+            <%}%>
+          </li>
+          <li class="nav-item">
+          <% if (title=="Services") { %>
+            <a class="nav-link active" href="/services"><i class="fas fa-tasks"></i> Services</a>
+          <%} else{%>
+            <a class="nav-link" href="/services"><i class="fas fa-tasks"></i> Services</a>
+          <%}%>
+          </li>
+          <li class="nav-item">
+          <% if (title=="Contact Me") { %>
+            <a class="nav-link active" href="/contactme"><i class="fas fa-address-card"></i> Contact Me</a>
+          <%} else{%>
+            <a class="nav-link" href="/contactme"><i class="fas fa-address-card"></i> Contact Me</a>
+          <%}%>
+          </li>
+
+    </div>
+  </nav>
