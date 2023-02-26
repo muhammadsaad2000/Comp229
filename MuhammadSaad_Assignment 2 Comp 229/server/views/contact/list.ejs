@@ -1,0 +1,124 @@
+<%- include ../partials/header.ejs %>
+
+<%- include ../partials/main_nav.ejs %>
+  
+
+  <!-- Main Content -->
+  <main class="container">
+    <div class="row">
+        <div class="offset-md-1 col-md-10">
+            <h1><%= title %></h1>
+           
+           <% if(typeof displayName == 'string' && displayName) { %>
+                <a href="/contact-list/add" class="btn btn-primary" role="button">
+                <i class="fas fa-plus-circle"></i> Add Contact</a>
+           <% } %>
+           
+            <br>
+            <br>
+            <p><strong>Click the headers of Name and Number to sort the table.</strong></p>
+            <p>The first time you click, the sorting direction is ascending.</p>
+            <p>Click again, and the sorting direction will be descending.</p>
+            <table class="fl-table table table-bordered table-hover styled-table  table-wrapper" id="contacttable">
+                <!-- Header Row-->
+                <tr class="d-flex">
+                    <% if(typeof displayName == 'string' && displayName) { %>
+                        <th class="text-center col-2" onclick="sortTable(0)">Name</th>
+                        <th class="text-center col-2" onclick="sortTable(1)">Number</th>
+                        <th class="text-center col-4">Email</th>
+                     <% } else { %>
+                        <th class="text-center col-3" onclick="sortTable(0)">Name</th>
+                        <th class="text-center col-3" onclick="sortTable(1)">Number</th>
+                        <th class="text-center col-6">Email</th>
+                     <% } %>
+                </tr>
+
+                <!-- Repeatable Template Row -->
+
+                <% for(let count = 0; count < ContactList.length; count++) { %>
+                    <tr class="d-flex">
+                        <% if(typeof displayName == 'string' && displayName) { %>
+                            <td class="text-center col-2"><%= ContactList[count].name %></td>
+                            <td class="text-center col-2"><%= ContactList[count].number %></td>
+                            <td class="text-center col-4"><%= ContactList[count].email %></td>
+                            <td class="text-center col-2">
+                                <a href="/contact-list/edit/<%= ContactList[count]._id %>" class="btn btn-primary btn-sm">
+                                <i class="fas fa-pencil-alt"></i> Edit</a>
+                            </td>
+                            <td class="text-center col-2">
+                                <a href="/contact-list/delete/<%= ContactList[count]._id %>" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash-alt"></i> Delete</a>
+                            </td>
+                        <% } else { %>
+                            <td class="text-center col-3"><%= ContactList[count].name %></td>
+                            <td class="text-center col-3"><%= ContactList[count].number %></td>
+                            <td class="text-center col-6"><%= ContactList[count].email %></td>
+                        <% } %>
+                    </tr>
+                <% } %>
+                <script>
+                    function sortTable(n) {
+                    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+                    table = document.getElementById("contacttable");
+                    switching = true;
+                    
+                    dir = "asc"; 
+                    
+                    while (switching) {
+                     
+                        switching = false;
+                        rows = table.rows;
+                     
+                        for (i = 1; i < (rows.length - 1); i++) {
+                     
+                        shouldSwitch = false;
+                     
+                        x = rows[i].getElementsByTagName("TD")[n];
+                        y = rows[i + 1].getElementsByTagName("TD")[n];
+                     
+                        if (dir == "asc") {
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        
+                            shouldSwitch= true;
+                            break;
+                            }
+                        } else if (dir == "desc") {
+                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        
+                            shouldSwitch = true;
+                            break;
+                            }
+                        }
+                        }
+                        if (shouldSwitch) {
+                        
+                        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                        switching = true;
+                        
+                        switchcount ++;      
+                        } else {
+                        
+                        if (switchcount == 0 && dir == "asc") {
+                            dir = "desc";
+                            switching = true;
+                        }
+                        }
+                    }
+                    }
+                    </script>
+
+            </table>
+                
+        </div>
+    </div>
+  </main>
+  
+<%- include ../partials/bottom_nav.ejs %>  
+
+<%- include ../partials/footer.ejs %>
+  
+
+
+
+
+
