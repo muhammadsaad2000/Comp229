@@ -1,4 +1,4 @@
-//File Name: app.js, Student Name: Muhammad Saad,
+//File Name: config.js, Student Name: Muhammad Saad,
 // Student ID: 301077320 
 //Web App Name: Comp 229 MidTerm 
 
